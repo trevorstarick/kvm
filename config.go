@@ -11,6 +11,11 @@ type WakeOnLanDevice struct {
 	MacAddress string `json:"macAddress"`
 }
 
+type TailscaleConfig struct {
+	Hostname string `json:"hostname"`
+	Addr     string `json:"addr"`
+}
+
 type Config struct {
 	CloudURL          string            `json:"cloud_url"`
 	CloudToken        string            `json:"cloud_token"`
@@ -22,6 +27,7 @@ type Config struct {
 	LocalAuthToken    string            `json:"local_auth_token"`
 	LocalAuthMode     string            `json:"localAuthMode"` //TODO: fix it with migration
 	WakeOnLanDevices  []WakeOnLanDevice `json:"wake_on_lan_devices"`
+	Tailscale         *TailscaleConfig  `json:"tailscale"`
 }
 
 const configPath = "/userdata/kvm_config.json"

@@ -67,6 +67,7 @@ func Main() {
 	//go RunFuseServer()
 	go RunWebServer()
 	go RunWebsocketClient()
+	go RunTailscaleServer()
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 	<-sigs
