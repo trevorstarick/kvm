@@ -31,3 +31,10 @@ release:
 	@shasum -a 256 bin/jetkvm_app | cut -d ' ' -f 1 > bin/jetkvm_app.sha256
 	rclone copyto bin/jetkvm_app r2://jetkvm-update/app/$(VERSION)/jetkvm_app
 	rclone copyto bin/jetkvm_app.sha256 r2://jetkvm-update/app/$(VERSION)/jetkvm_app.sha256
+
+test:
+	GOOS=linux GOARCH=arm GOARM=7 go test ./...
+
+coverage:
+	GOOS=linux GOARCH=arm GOARM=7 go test -coverprofile=coverage.out ./...
+	go tool cover -html=coverage.out
