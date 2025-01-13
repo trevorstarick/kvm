@@ -2,11 +2,12 @@ package kvm
 
 import (
 	"fmt"
+	"net"
+	"time"
+
 	"github.com/pion/mdns/v2"
 	"golang.org/x/net/ipv4"
 	"golang.org/x/net/ipv6"
-	"net"
-	"time"
 
 	"github.com/vishvananda/netlink"
 	"github.com/vishvananda/netlink/nl"
@@ -98,7 +99,7 @@ func init() {
 	done := make(chan struct{})
 
 	if err := netlink.LinkSubscribe(updates, done); err != nil {
-		fmt.Println("failed to subscribe to link updates: %v", err)
+		fmt.Println("failed to subscribe to link updates: %w", err)
 		return
 	}
 
@@ -125,6 +126,6 @@ func init() {
 	fmt.Println("Starting mDNS server")
 	err := startMDNS()
 	if err != nil {
-		fmt.Println("failed to run mDNS: %v", err)
+		fmt.Println("failed to run mDNS: %w", err)
 	}
 }

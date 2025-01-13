@@ -191,7 +191,7 @@ func handleVideoClient(conn net.Conn) {
 	for {
 		n, err := conn.Read(inboundPacket)
 		if err != nil {
-			log.Println("error during read: %s", err)
+			log.Println("error during read: %w", err)
 			return
 		}
 		now := time.Now()
